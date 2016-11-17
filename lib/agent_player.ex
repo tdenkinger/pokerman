@@ -19,7 +19,15 @@ defmodule AgentPlayer do
     {:ok, AgentPlayer.stack(player_pid)}
   end
 
+  def deal_to(player_pid, card1, card2), do: update_cards(player_pid, {card1, card2})
+
   # Helper functions
+
+  defp update_cards(player_pid, cards) do
+    Agent.update(player_pid, fn(player) ->
+      Map.put(player, :cards, cards )
+    end)
+  end
 
   defp adjust_stack(player_pid, amount) do
     Agent.update(player_pid, fn(player) ->
