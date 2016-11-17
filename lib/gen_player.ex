@@ -4,7 +4,7 @@ defmodule GenPlayer do
   # Public API
 
   def start_link(player_name) do
-    GenServer.start_link(__MODULE__, player_name, name: Player)
+    GenServer.start_link(__MODULE__, player_name, [])
   end
 
   def name(pid), do: GenServer.call(pid, {:name})
