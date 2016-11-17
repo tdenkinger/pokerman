@@ -1,9 +1,8 @@
 defmodule GenPlayerTest do
   use ExUnit.Case, async: true
-  doctest GenPlayer
 
   setup do
-    {:ok, player} = GenPlayer.start_link("Troy")
+    {:ok, player} = GenPlayer.be_seated("Troy")
     {:ok, player: player}
   end
 

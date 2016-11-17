@@ -1,13 +1,12 @@
 defmodule AgentPlayerTest do
   use ExUnit.Case, async: true
-  doctest AgentPlayer
 
   setup do
-    {:ok, player} = AgentPlayer.start_link("Troy")
+    {:ok, player} = AgentPlayer.be_seated("Troy")
     {:ok, player: player}
   end
 
-  describe "GenPlayer" do
+  describe "AgentPlayer" do
     test "has an initial state", %{player: player} do
       assert AgentPlayer.name(player)  == "Troy"
       assert AgentPlayer.stack(player) == 0
