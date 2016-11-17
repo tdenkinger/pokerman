@@ -23,6 +23,11 @@ defmodule GenPlayerTest do
       GenPlayer.buy_chips(player, 500)
       assert GenPlayer.stack(player) == 600
     end
+
+    test "can bet", %{player: player} do
+      GenPlayer.buy_chips(player, 150)
+      assert GenPlayer.bet(player, 50) == {:ok, 100}
+    end
   end
 end
 

@@ -15,6 +15,8 @@ defmodule GenPlayer do
 
   def buy_chips(pid, amount), do: GenServer.cast(pid, {:add_chips, amount})
 
+  def bet(pid, amount), do: GenServer.call(pid, {:bet, amount})
+
   # Callbacks
 
   def init(player_name) do
@@ -22,8 +24,12 @@ defmodule GenPlayer do
   end
 
   def handle_cast({:add_chips, amount}, player_details) do
-    player_details  = Map.update!(player_details, :stack, &(&1 + amount))
-    {:noreply, player_details}
+    {:noreply, adjust_stack(player_details, amount)}
+  end
+
+  def handle_call({:bet, amount}, _from, player_details) do
+    player_details  = adjust_stack(player_details, -amount)
+    {:reply, {:ok, player_details[:stack]}, player_details}
   end
 
   def handle_call({:name}, _from, player_details) do
@@ -36,6 +42,12 @@ defmodule GenPlayer do
 
   def handle_call({:cards}, _from, player_details) do
     {:reply, player_details[:cards], player_details}
+  end
+
+  # Helper functions
+
+  defp adjust_stack(player, amount) do
+    Map.update!(player, :stack, &(&1 + amount))
   end
 end
 
