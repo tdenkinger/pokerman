@@ -13,10 +13,17 @@ defmodule GenPlayer do
 
   def cards(pid), do: GenServer.call(pid, {:cards})
 
+  def buy_chips(pid, amount), do: GenServer.cast(pid, {:add_chips, amount})
+
   # Callbacks
 
   def init(player_name) do
     {:ok, %{name: player_name, stack: 0, cards: []}}
+  end
+
+  def handle_cast({:add_chips, amount}, player_details) do
+    player_details  = Map.update!(player_details, :stack, &(&1 + amount))
+    {:noreply, player_details}
   end
 
   def handle_call({:name}, _from, player_details) do
@@ -30,7 +37,5 @@ defmodule GenPlayer do
   def handle_call({:cards}, _from, player_details) do
     {:reply, player_details[:cards], player_details}
   end
-
-
 end
 

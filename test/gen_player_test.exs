@@ -7,10 +7,22 @@ defmodule GenPlayerTest do
     {:ok, player: player}
   end
 
-  test "stores a player's name", %{player: player} do
-    assert GenPlayer.name(player) == "Troy"
-    assert GenPlayer.stack(player) == 0
-    assert GenPlayer.cards(player) == []
+  describe "GenPlayer" do
+    test "has an initial state", %{player: player} do
+      assert GenPlayer.name(player)  == "Troy"
+      assert GenPlayer.stack(player) == 0
+      assert GenPlayer.cards(player) == []
+    end
+
+    test "can buy chips", %{player: player} do
+      assert GenPlayer.stack(player) == 0
+
+      GenPlayer.buy_chips(player, 100)
+      assert GenPlayer.stack(player) == 100
+
+      GenPlayer.buy_chips(player, 500)
+      assert GenPlayer.stack(player) == 600
+    end
   end
 end
 
