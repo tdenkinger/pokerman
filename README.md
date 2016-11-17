@@ -1,24 +1,9 @@
 # Pokerman
 
-**TODO: Add description**
+A simple GenServrer and Agent implementation to show the difference between them
+and why you might want to use one or the other.
 
-## Installation
+Each represents a poker player who would, presumably, part of a larger
+application that handles decision making and game management.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `pokerman` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:pokerman, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `pokerman` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:pokerman]]
-    end
-    ```
 
