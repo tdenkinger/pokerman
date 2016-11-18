@@ -13,7 +13,7 @@ defmodule AgentPlayer do
 
   def bet(player_pid, amount), do: adjust_stack(player_pid, -amount)
 
-  def deal_to(player_pid, card1, card2), do: update_cards(player_pid, {card1, card2})
+  def deal_cards(player_pid, card1, card2), do: update_cards(player_pid, {card1, card2})
 
   defp update_cards(player_pid, cards) do
     Agent.update(player_pid, fn(player) ->
