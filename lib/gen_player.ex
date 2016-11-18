@@ -13,11 +13,11 @@ defmodule GenPlayer do
 
   def cards(pid), do: GenServer.call(pid, {:cards})
 
-  def buy_chips(pid, amount), do: GenServer.cast(pid, {:add_chips, amount})
+  def buy_chips(pid, amount), do: GenServer.cast(pid, {:buy_chips, amount})
 
   def bet(pid, amount), do: GenServer.call(pid, {:bet, amount})
 
-  def deal_to(pid, card1, card2), do: GenServer.cast(pid, {:deal_cards, card1, card2})
+  def deal_cards(pid, card1, card2), do: GenServer.cast(pid, {:deal_cards, card1, card2})
 
   # Callbacks
 
@@ -25,7 +25,7 @@ defmodule GenPlayer do
     {:ok, %{name: player_name, stack: 0, cards: {nil, nil}}}
   end
 
-  def handle_cast({:add_chips, amount}, player_details) do
+  def handle_cast({:buy_chips, amount}, player_details) do
     {:noreply, adjust_stack(player_details, amount)}
   end
 

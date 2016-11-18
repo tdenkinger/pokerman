@@ -31,10 +31,10 @@ defmodule GenPlayerTest do
     test "can be dealt cards", %{player: player} do
       assert GenPlayer.cards(player) == {nil, nil}
 
-      GenPlayer.deal_to(player, "5h", "5s")
+      GenPlayer.deal_cards(player, "5h", "5s")
       assert GenPlayer.cards(player) == {"5h", "5s"}
 
-      GenPlayer.deal_to(player, "Ac", "Ad")
+      GenPlayer.deal_cards(player, "Ac", "Ad")
       assert GenPlayer.cards(player) == {"Ac", "Ad"}
     end
   end
