@@ -2,7 +2,7 @@ defmodule AgentPlayerTest do
   use ExUnit.Case, async: true
 
   setup do
-    {:ok, player} = AgentPlayer.be_seated("Troy")
+    {:ok, player} = AgentPlayer.take_seat("Troy")
     {:ok, player: player}
   end
 

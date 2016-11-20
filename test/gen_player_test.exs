@@ -2,7 +2,7 @@ defmodule GenPlayerTest do
   use ExUnit.Case, async: true
 
   setup do
-    {:ok, player} = GenPlayer.be_seated("Troy")
+    {:ok, player} = GenPlayer.take_seat("Troy")
     {:ok, player: player}
   end
 

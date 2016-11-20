@@ -1,5 +1,5 @@
 defmodule AgentPlayer do
-  def be_seated(name) do
+  def take_seat(name) do
     Agent.start_link(fn -> %{name: name, stack: 0, cards: {nil, nil}} end)
   end
 

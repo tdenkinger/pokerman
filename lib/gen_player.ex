@@ -3,8 +3,8 @@ defmodule GenPlayer do
 
   # Public API
 
-  def be_seated(player_name) do
-    GenServer.start_link(__MODULE__, player_name, [])
+  def take_seat(name) do
+    GenServer.start_link(__MODULE__, name, [])
   end
 
   def name(pid), do: GenServer.call(pid, :name)
@@ -21,8 +21,8 @@ defmodule GenPlayer do
 
   # Callbacks
 
-  def init(player_name) do
-    {:ok, %{name: player_name, stack: 0, cards: {nil, nil}}}
+  def init(name) do
+    {:ok, %{name: name, stack: 0, cards: {nil, nil}}}
   end
 
   def handle_cast({:deal_cards, card1, card2}, player) do
